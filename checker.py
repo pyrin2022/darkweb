@@ -8,12 +8,12 @@ import datetime
 
 def main():
     start = time.time()
-    dir = "G:\\독수리\\psy"
+    dir = "G:\\독수리\\medi1121"
     files=os.listdir(dir)
     files_csv = [f for f in files if f.endswith('.csv')]
     #print("filename:", files_csv)
     domain_file = "G:\\독수리\\email.csv"
-    result_file = "G:\\독수리\\1114_result.csv"
+    result_file = "G:\\독수리\\1121_result.csv"
     domain_list = []
 
     f = open(domain_file, "r")
@@ -31,7 +31,7 @@ def main():
         f.close()
 
         count = 0
-
+        total_count = 0
         for line in lines :
             line = line.strip()
 
@@ -50,14 +50,15 @@ def main():
             count += 1
             if count % 100000 == 0 :
                 print (count)
+            total_count += count
 
     sec = time.time() - start
     times = str(datetime.timedelta(seconds=sec))
     exe_time = times.split(".")[0]
-    print("실행시간: ", exe_time," 확인건수: ", count )
+    print("exec time: ", exe_time," count: ", total_count )
 
     if os.path.isfile(result_file) == False:
-        print("매칭되는 값이 없습니다.")
+        print("No matches...")
 
 if __name__ == "__main__":
     main()
